@@ -40,6 +40,12 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
 
 @synthesize dataSource, delegate, initialDate, selectedDate;
 
++ (Class) kalViewClass {
+
+	return [KalView class];
+
+}
+
 - (id)initWithSelectedDate:(NSDate *)date
 {
   if ((self = [super init])) {
@@ -183,7 +189,7 @@ NSString *const KalDataSourceChangedNotification = @"KalDataSourceChangedNotific
 {
   if (!self.title)
     self.title = @"Calendar";
-  KalView *kalView = [[[KalView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] delegate:self logic:logic] autorelease];
+  KalView *kalView = [[(KalView *)[[[self class] kalViewClass] alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame] delegate:self logic:logic] autorelease];
   self.view = kalView;
   tableView = kalView.tableView;
   tableView.dataSource = dataSource;
