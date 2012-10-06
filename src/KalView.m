@@ -219,6 +219,18 @@ static const CGFloat kMonthLabelHeight = 17.f;
 
 - (KalDate *)selectedDate { return gridView.selectedDate; }
 
+- (CGSize) sizeThatFits:(CGSize)size {
+
+	CGSize gridViewSize = [gridView sizeThatFits:size];
+	CGSize headerViewSize = (CGSize){ CGRectGetWidth(self.bounds), kHeaderHeight };
+	
+	return (CGSize){
+		MAX(headerViewSize.width, gridViewSize.width),
+		headerViewSize.height + gridViewSize.height
+	};
+	
+}
+
 - (void)dealloc
 {
   [logic removeObserver:self forKeyPath:@"selectedMonthNameAndYear"];
