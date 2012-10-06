@@ -70,9 +70,13 @@ static NSString *kSlideAnimationId = @"KalSwitchMonths";
   CGContextFillRect(UIGraphicsGetCurrentContext(), line);
 }
 
-- (void)sizeToFit
-{
-  self.height = frontMonthView.height;
+- (CGSize) sizeThatFits:(CGSize)size {
+
+	return (CGSize){
+		320,
+		frontMonthView.height
+	};
+
 }
 
 #pragma mark -
